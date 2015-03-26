@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery UI Datepicker - Default functionality</title>
+		<link rel="stylesheet" href="jquery_ui.css">
+		<script src="jquery-1.9.1.min.js"></script>
+		<script src="jquery-ui.js"></script>
+		
+		
+	</head>
+	<body>
+		<input type="number" name="number_one" id="number_one"> <br><br> 
+		
+		<select name="type_calculate" id="type_calculate">
+			<option value="plus">บวก</option>
+			<option value="minus">ลบ</option>
+			<option value="multiply">คูณ</option>
+			<option value="divide">หาร</option>
+		</select>
+		<br><br>
+		<input type="number" name="number_two" id="number_two"> <br><br>
+		
+		<p><input type="button" name="btn_calculate" id="btn_calculate" value="Calculate"></p>
+		
+		<script>
+			$(document).ready(function() {
+				
+				$( "#btn_calculate" ).click(function(){
+					var number_one = parseInt($("#number_one").val());
+					var number_two = parseInt($("#number_two").val());
+					
+					if(number_one != "" && number_two != ""){
+						if($("#type_calculate").val() == "plus"){
+							
+							alert((number_one + number_two));
+						}else if($("#type_calculate").val() == "minus"){
+							alert((number_one - number_two));
+						}else if($("#type_calculate").val() == "multiply"){
+							alert((number_one * number_two));
+						}else if($("#type_calculate").val() == "divide"){
+							alert((number_one / number_two));
+						}
+						
+					}else{
+						alert('กรุณากรอกข้อมูลให้ครบ');
+					}
+					
+				});
+				
+				
+				
+				$("#number_one,#number_two").keydown(function (e) {
+					// Allow: backspace, delete, tab, escape, enter and .
+					if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+						 // Allow: Ctrl+A
+						(e.keyCode == 65 && e.ctrlKey === true) || 
+						 // Allow: home, end, left, right, down, up
+						(e.keyCode >= 35 && e.keyCode <= 40)) {
+							 // let it happen, don't do anything
+							 return;
+					}
+					// Ensure that it is a number and stop the keypress
+					if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+						e.preventDefault();
+					}
+				});
+			});
+		</script>
+		
+	</body>
+</html>
